@@ -7,7 +7,7 @@ describe('The users vists the create page', () => {
     it('can see it rendered', () => {
       //setup
       const itemToCreate = buildItemObject();
-      browser.url('/create.html');
+      browser.url('/items/create');
 
       //exercise
       browser.setValue('#title-input', itemToCreate.title);

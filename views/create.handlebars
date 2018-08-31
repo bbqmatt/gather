@@ -1,9 +1,3 @@
-<div id="title-container">
-  <a href="/">
-    <img src="img/logo.svg" alt="logo" />
-    <div id="title">gather</div>
-  </a>
-</div>
 <div class="create-container">
   <div class="create-card">
     <div class="create-column">
@@ -14,14 +8,11 @@
     <div class="create-column">
       Create
 
-      <form class="input-form" action="create.html" method="post" >
-        <input id="title-input" name="title-input" type="text">
-        <textarea id="description-input" name="description-input"></textarea>
-        <input id="imageUrl-input" name="imageUrl-input">
-        <button id="submit-button" type="submit">
-          <p>button text</p>
-        </button>
-
+      <form action="/items/create" method="post">
+        <input id="title-input" name="title"/>
+        <textarea id="description-input" name="description"></textarea>
+        <input id="imageUrl-input" name="imageUrl"/>
+        <button id="submit-button" type="submit">Create</button>
       </form>
     </div>
   </div>

@@ -49,7 +49,7 @@ describe('Server path: /items/create', () => {
          const response = await request(app)
             .post('/items/create')
             .type('form')
-            .send(itemToCreate);
+            .send(item);
 
         //verify
         assert.include(parseTextFromHTML(response.text, '.item-title'), item.title);
