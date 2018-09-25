@@ -40,21 +40,37 @@ describe('Server path: /items/create', () => {
     });
 
     describe('POST', () => {
-      it('creates and renders a new item', async () => {
+      it('creates a new item', async () => {
 
          //setup
-         const item = buildItemObject();
+         const itemToCreate = buildItemObject();
 
          //exercise
          const response = await request(app)
             .post('/items/create')
             .type('form')
-            .send(item);
+            .send(itemToCreate);
 
         //verify
-        assert.include(parseTextFromHTML(response.text, '.item-title'), item.title);
-        const imageElement = findImageElementBySource(response.text, item.imageUrl);
-        assert.equal(imageElement.src, item.imageUrl);
+        const createdItem = await Item.findOne(itemToCreate);
+        assert.isOk(createdItem, 'Item was not created successfully in the database');
+
+      });
+
+      it('redirect to / with status code 302', async () => {
+
+        //setup
+        const itemToCreate = buildItemObject();
+
+        //exercise
+        const response = await request(app)
+          .post('/items/create')
+          .type('form')
+          .send(itemToCreate);
+
+        //verify
+        assert.equal(response.status, 302);
+        assert.equal(response.headers.location, '/');
 
       });
     });
